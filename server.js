@@ -88,34 +88,34 @@ app.get('/api/latest/imagesearch', function (req, res) {
         mongo.connect(mongoUri, function(err, db) {
             if (err) {
                 console.log(err);
-                throw err;
+                res.status(500).send({ error: err.message });
             }
             else {
-                var collection = db.collection('urls');
+                var collection = db.collection('queries');
                 
-                collection.find({_id: parseInt(req.params.urlId)})
+                collection.find({}, {sort: [['created','desc']]})
                     .toArray(function(err, docs) {
                         if (err) {
                             console.log(err);
-                            throw err;
+                            res.status(500).send({ error: err.message });
                         }
-                        if (docs[0]) {
-                            db.close();
-                            
-                            res.redirect(docs[0].url);
+                        // returning results
+                        var output = [];
+                        
+                        for (var i=0; i < docs.length; i++) {
+                            var out = {term: docs[i].query,
+                                        when: docs[i].created};
+                            output.push(out);
                         }
-                        else {
-                            db.close();
-                            
-                            res.json({error: "Url not found in the database"});
-                        }
+                        
+                        res.json(output);
                     }
                 );
             }
         });
     }
     catch (e) {
-        res.sendStatus(500);
+        res.status(500).send({ error: e.message });
     }
 });
 
