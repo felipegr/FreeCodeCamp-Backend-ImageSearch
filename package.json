@@ -1,0 +1,14 @@
+{
+  "name": "freecodecamp_image_search",
+  "version": "1.0.0",
+  "description": "Image search service for FreeCodeCamp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Felipe Godói Rosário",
+  "license": "ISC",
+  "dependencies": {
+    "google-search": "0.0.5"
+  }
+}
