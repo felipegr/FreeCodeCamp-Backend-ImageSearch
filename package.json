@@ -9,6 +9,8 @@
   "author": "Felipe Godói Rosário",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.15.0",
+    "mongodb": "^2.2.24",
     "google-search": "0.0.5"
   }
 }
