@@ -122,7 +122,7 @@ app.get('/api/latest/imagesearch', function (req, res) {
 // Any other url
 app.get('*', function (req, res) {
     res.send("Please enter a image search, like " + req.headers.host + "/api/imagesearch/lolcats%20funny?offset=10, or \
-             look at the 10 most recent searches at " + req.headers.host + "api/latest/imagesearch/");
+             look at the 10 most recent searches at " + req.headers.host + "/api/latest/imagesearch/");
 });
 
 app.listen(process.env.PORT || 8080, function () {
